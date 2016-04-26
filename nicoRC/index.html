@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>nicoRC</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="content-language" content="ja">
+  <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/hbnkckjjmfndajfdkdnkhlkpgjhmnfci">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../script/jquery.min.js"></script>
+  <script>
+  $(window).ready(function(){
+    $(".adingoFluctOverlay").wrap('<div id="hidden" style="display:none;"></div>');
+    $('#install').click(function(){
+        chrome.webstore.install('https://chrome.google.com/webstore/detail/hbnkckjjmfndajfdkdnkhlkpgjhmnfci');
+    });
+  });
+  </script>
+
+</head>
+<body style='text-align:center;'>
+  <span style="font-weight:bold;">nicoRC 0.1.0</span><br>
+  <span>ニコニコプレイヤーをニコニコ動画(RC)風に見れるようにするChrome拡張</span><br><br>
+  <span>Windowsは確認.</span><br>
+  <span>他スクリプト等との干渉は未検証.</span><br><br>
+  <span>利用は自己責任.</span><br><br>
+  <a id="install" href='#'><span>Download.</span></a><br><br>
+
+  <a href='../'><span>Return</span></a><br><br>
+</body>
+</html>

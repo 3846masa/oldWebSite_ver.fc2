@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="content-language" content="ja">
+  <title>3846masa's Homepage</title>
+  <style>
+    a:link { color: #FFFFFF; }
+    a:visited { color: #FFFFFF; }
+    a:hover { color: #FFFFFF; }
+    a:active { color: #FFFFFF; }
+    body {
+      background-color: #000000;
+      color: #F0F0F0;
+      font-family: "ＭＳ ゴシック",monospace;
+    }
+    #underBar {
+      visibility: hidden;
+      display: none;
+    }
+    #text {
+      visibility: hidden;
+      white-space: pre;
+    }
+  </style>
+
+<script src='./script/jquery.min.js'></script>
+<script>
+  var timer;
+
+  function showBar(){
+    if ( $('#underBar')[0].style.visibility == 'hidden' ){
+      $('#underBar')[0].style.visibility = 'visible';
+    }else{
+      $('#underBar')[0].style.visibility = 'hidden';
+    }
+  }
+
+  var speed = 20;
+
+  var count = 0;
+  var line = 0;
+  var flag = 0;
+  var txt;
+  var txtList;
+
+  function startShowText(){
+    txt = $('#text').text();
+    $('#text').text('');
+    txtList = txt.split("\n");
+    txt = txtList[line];
+    setTimeout('showText();', speed*10);
+    timer = setInterval('showBar();',500);
+  }
+
+  function showText(){
+    if (count == 0){
+      $('#text').text( $('#text').text() + "\n\nYUKI.N >\t" );
+      $('#text')[0].style.visibility = 'visible';
+      $('#underBar')[0].style.display = "inline";
+      count++;
+      setTimeout('showText();', speed*10);
+    }else{
+      if (count <= txt.length){
+        if ( txt.substring(count-2, count-1) == '。' ) {
+          $('#text').text( $('#text').text()+"\n\t\t");
+        }
+        var msg =  $('#text').text() + txt.substring(count-1, count);
+        $('#text').text(msg);
+        if ( txt.substring(count-1, count) == '。' || txt.substring(count-1, count) == '、' ) {
+          setTimeout('showText();', speed*5);
+        }else{
+          setTimeout('showText();', speed);
+        }
+        count++;
+      }else{
+        line++;
+        if (line < txtList.length){
+          count = 0;
+          txt = txtList[line];
+          setTimeout('showText();', speed*10);
+        }else{
+          flag = 1;
+        }
+      }
+    }
+  }
+
+
+  $(window).keyup(function(e){
+    console.log(e.keyCode);
+    if (flag == 1 && e.keyCode == 13){
+      clearInterval(timer);
+      $("#underBar")[0].style.visibility = "hidden";
+      history.back();
+    }
+  });
+
+
+  $(window).ready(function() {
+    setTimeout('startShowText();',1000);
+  });
+</script>
+
+</head>
+<body>
+<noscript style="white-space: pre;">
+YUKI.N >	404 Not Found.
+
+YUKI.N >	このメッセージが表示されたということは、ここにはページが存在していない。
+
+YUKI.N >	Javascriptが無効であり、我々は干渉できない。
+
+YUKI.N >	もう一度こちらへ回帰することを我々は望んでいる。
+		私という個体もあなたには戻ってきて欲しいと感じている。
+
+YUKI.N >	またウェブサイトに
+</noscript>
+
+<span id="text"><pre>404 Not Found.
+このメッセージが表示されたということは、ここにはページが存在していない。
+これは緊急脱出プログラムである。
+起動させる場合はエンターキーを、そうでない場合はそれ以外のキーを選択せよ。
+起動させた場合、あなたは表示修正の機会を得る。ただし成功は保証できない。また帰還の保証もできない。
+このプログラムが起動するのは一度きりである。実行ののち、消去される。非実行が選択された場合は起動せずに消去される。
+Ready? </pre></span><span id="underBar">＿</span>
+</body>
+</html>

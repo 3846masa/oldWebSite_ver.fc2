@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="content-language" content="ja">
+  <title>3846masa's Homepage</title>
+  <style>
+    @font-face {
+      font-family: '花園明朝A';
+      src: url('./font/HanaMinA-fix.ttf') format('truetype');
+    }
+
+    a:link { color: #FFFFFF; }
+    a:visited { color: #FFFFFF; }
+    a:hover { color: #FFFFFF; }
+    a:active { color: #FFFFFF; }
+    html,body {
+      width:100%;
+      height:100%;
+      margin: 0px;
+    }
+    body {
+      background-color: #622DA8;
+      color: #F0F0F0;
+      font-family: "HGP明朝B",'花園明朝A',serif;
+      letter-spacing: 1em;
+      text-align: center;
+    }
+    div#main{
+      width: 100%;
+      height: 100%;
+      margin: 0px 0px -30px 0px;
+    }
+    div#header{
+      position: absolute;
+      margin-left: 0.5ex;
+      bottom: 90.1%;
+      width: 100%;
+    }
+    div#center{
+      display: table;
+      position: absolute;
+      margin: 0;
+      width: 80%;
+      height: 80%;
+      top: 10%;
+      left: 10%;
+      bottom: 10%;
+      right: 10%;
+      border: solid 10px #FFFFFF;
+    }
+    div#center-inner{
+      display: table-cell;
+      vertical-align: middle;
+      width: 100%;
+      height: 100%;
+    }
+    div#footer{
+      position: absolute;
+      margin-left: 0.5ex;
+      top: 90.1%;
+      width: 100%;
+    }
+    #fc2_footer{
+      position:fixed;
+      bottom:0px;
+    }
+  </style>
+
+<script src='./script/jquery.min.js'></script>
+<script src='./script/jquery.parse.min.js'></script>
+
+<script src="./script/jquery.fittext.js"></script>
+<script>
+  $("#main").fitText(0.5);
+</script>
+
+<script>
+  var csvString = $.get("./script/oldChar.txt");
+  var lists;
+  var data = "";
+  
+  function changeToOldChara(){
+    $("#main").fitText(2.5);
+    lists = $.parse( csvString.responseText ,{
+      delimiter:",",
+      header: false,
+      dynamicTyping: false});
+    lists = lists.results;
+    console.log(lists);
+    for (var i=0; i<lists.length; i++){
+      data = $('#main').html();
+      data = data.replace(new RegExp(lists[i][0], 'g'),lists[i][1]);
+      $('#main').html(data);
+    }
+    $('.hira').each(function(){
+      for (var i=0; i<lists.length; i++){
+        data = $(this).html();
+        data = data.replace(new RegExp(lists[i][1], 'g'),lists[i][0]);
+        $(this).html(data);
+      }
+    });
+  }
+  
+  $(function(){
+    checkFont();
+    changeToOldChara();
+  });
+
+  function checkFont(){
+    if(! detectFontsAvailable(['HGP明朝B'])){
+      $("body")[0].style.fontWeight = 'bold';
+    }
+  }
+
+  function detectFontsAvailable(fontFamilies) {
+      var parentElem = document.getElementsByTagName("html")[0];
+      var elem = document.createElement("span");
+      elem.style.visibility = "hidden";
+      elem.style.position = "absolute";
+      elem.style.top = "-10000px";
+      elem.style.left = "-10000px";
+      elem.style.fontFamily = "__FAKEFONT__";
+      elem.style.fontSize = "32px";
+      elem.innerHTML = "abcdefghijklmnopqrstuvwxyz";
+      parentElem.appendChild(elem);
+      var defaultWidth = elem.offsetWidth;
+      var defaultHeight = elem.offsetHeight;
+      var result = false;
+
+      for (i = 0; i < fontFamilies.length; i++) {
+          elem.style.fontFamily = fontFamilies[i];
+          result |= (elem.offsetWidth != defaultWidth || elem.offsetHeight != defaultHeight)
+      }
+
+      parentElem.removeChild(elem)
+      return result;
+  }
+
+</script>
+
+</head>
+<body>
+<div id="main">
+<div id="header">
+予　告
+</div>
+<div id="center">
+<div id="center-inner">
+次　回<br><br><br>
+<span class="hira">きむら</span>エイリアン 其の壱<br><br>　
+</div>
+</div>
+<div id="footer">
+
+</div>
+</div>
+</body>
+</html>

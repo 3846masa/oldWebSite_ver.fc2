@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ProjectList - 3846masa's Homepage</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="content-language" content="ja">
+  <script src="script/jquery.min.js"></script>
+  <script>
+  $(function(){
+    $(".adingoFluctOverlay").wrap('<div id="hidden" style="display:none;"></div>');
+    $(".project").each(function(){
+      $(this).mouseenter(function(){
+        $(this).css({"opacity":0.5});
+      });
+      $(this).mouseleave(function(){
+        $(this).css({"opacity":1});
+      });
+    });
+    $("#fc2_footer").click(function(){
+      location.href = "./top.html";
+    });
+  });
+  </script>
+  <style>
+  a{
+    text-decoration:none;
+  }
+  html,body{
+    width:100%;
+    height:100%;
+    margin:0px;
+    position:absolute;
+    top:0px;
+    left:0px;
+  }
+  .container {
+    display : table;
+  }
+  .project {
+    display : table-cell;
+    width : 100%;
+    height : 50%;
+    float : left;
+    background-repeat : no-repeat;
+    background-position : center center;
+    background-size : 80%;
+  }
+  .footer {
+    display : table-cell;
+    width : 100%;
+    height : 10%;
+    vertical-align : middle;
+    text-align : center;
+  }
+  #fc2_footer{
+    position:fixed;
+    bottom:0px;
+  }
+  </style>
+</head>
+<body>
+  <div class="container" style="float:left;width:50%; height:90%;">
+    <a href="http://app.mikumiku.moe/fMeganeS/" class="project" style="background-color:white;
+    background-image:url(./img/fMeganeS.svg);">
+    </a>
+    <a href="./WindowHideTool.html" class="project" style="background-color:black;background-image:url(./img/WindowHideTool.svg);">
+    </a>
+  </div>
+  <div class="container" style="float:right;width:50%; height:90%; cursol:pointer;text-align:center;">
+    <a href="./nicoCast/" class="project" style="background-color:white;background-image:url(./nicoCast/logo_black.svg);">
+    </a>
+    <span href="./nicoThumbWatch/" style="display:inline-block;width:100%;font-size:200%;font-weight:bold;color:black;">
+      その他の制作物
+    </span><br><br>
+    <a href="./nicoThumbWatch/" style="display:inline-block;width:100%;font-weight:bold;background-color:#A0F0A0; color:black; font-size:large;">
+      nicoThumbWatch4HTML5
+    </a><br><br>
+    <a href="./nicoRC/" style="display:inline-block;width:100%;font-weight:bold;background-color:#A0F0A0; color:black; font-size:large;">
+      nicoRC
+    </a><br><br>
+    <span href="./nicoThumbWatch/" style="display:inline-block;width:100%;font-size:50%;font-weight:bold;color:black;">
+      そのうちこのページも綺麗にする予定
+    </span>
+  </div>
+  <div class="container" style="width:100%; height:10%; cursol:pointer;">
+    <a href="./top.html" class="footer" style="background-color:#A0A0A0; color:black;">
+      Back
+    </a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,169 @@
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('../fonts/fontawesome-webfont.ttf');
+}
+
+.text {
+  display: block;
+  width: 100%;
+  font-size: 90px;
+  font-weight: bold;
+  text-align: center;
+  color: gray;
+  text-shadow: rgba(0,0,0,0.25) 2px 10px 7px;
+  background-clip: text;
+  animation: anime 8s ease;
+  -webkit-animation: anime 8s ease;
+}
+
+@-webkit-keyframes anime {
+  0% {
+    opacity: 0.0;
+  }
+  100% {
+    opacity: 1.0;
+  }
+}
+@keyframes anime {
+  0% {
+    opacity: 0.0;
+  }
+  100% {
+    opacity: 1.0;
+  }
+}
+
+.circle {
+  display: inline-block;
+  position: relative;
+  width: 200px;
+  height: 200px;
+  background: red;
+  border-radius: 100px;
+}
+
+.circle.twitter {
+  background: #55ACEE;
+}
+
+.circle .twitter_icon {
+  font-family: 'FontAwesome';
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 100px;
+  margin-top: -50px;
+  margin-left: -44px;
+}
+
+.circle.info {
+  background: #3B5996;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.circle.info:hover {
+  width:400px;
+}
+
+.circle .info_icon {
+  font-family: 'FontAwesome';
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 130px;
+  margin-top: -65px;
+  margin-left: -25px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.circle .info_detail {
+  font-size: 16px;
+  line-height: 20px;
+  display: inline-block;
+  position: absolute;
+  left: 100px;
+  width: 250px;
+  padding: 15px 0px;
+  color: white;
+  text-align: center;
+  opacity: 0.0;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.circle:hover .info_detail {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  opacity: 1.0;
+}
+
+.circle.info:before {
+  display: none;
+}
+
+.circle.info:hover .info_icon {
+  left: 75px;
+}
+
+.circle:before {
+  content: "";
+  z-index: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  background: black;
+  opacity: 0.0;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.circle.twitter:before {
+  background-image: url("../images/twitter_icon.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.circle:hover:before {
+  opacity: 0.5;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+
+.circle.twitter:hover:before {
+  opacity: 1.0;
+}
+
+.circle .twitter_name {
+  display: inline-block;
+  z-index: -1;
+  background: #55ACEE;
+  font-size: 30px;
+  font-family: "M+ 1p thin";
+  padding: 10px 10px 10px 20px;
+  border-radius: 0px 10px 10px 0px;
+  position: absolute;
+  top: 50%;
+  margin-top: -32.5px;
+  left: 0px;
+  color: white;
+  opacity: 0.0;
+  -webkit-transition: ease-out 0.3s;
+  transition: ease-out 0.3s;
+}
+
+.circle:hover .twitter_name {
+  opacity: 1.0;
+  left: 190px;
+}

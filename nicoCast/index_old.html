@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <title>NicoCast - 3846masa's Homepage</title>
+  <meta charset="UTF-8">
+  <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/eenipglaffhnoinogndbmbdkmdlcedal">
+  <script src="../script/jquery.min.js"></script>
+  <script>
+    $(window).ready(function(){
+      $(".adingoFluctOverlay").wrap('<div id="hidden" style="display:none;"></div>');
+      /*$('#install').click(function(){
+        chrome.webstore.install('https://chrome.google.com/webstore/detail/eenipglaffhnoinogndbmbdkmdlcedal');
+      });*/
+    });
+  </script>
+  <style>
+    a{
+      text-decoration:none;
+    }
+    html,body,#screen {
+      width:100%;
+      height:100%;
+      margin:0px;
+      position:absolute;
+      top:0px;
+      left:0px;
+      text-align: center;
+      display: inline-table;
+    }
+    #main {
+      display: table-cell !important;
+      vertical-align: middle;
+      text-align: center;
+    }
+    #main img {
+      max-width: 50%;
+      max-height: 50%;
+      width: 50%;
+      height: 50%;
+      cursor: pointer;
+    }
+    #fc2_footer{
+      position:fixed;
+      bottom:0px;
+    }
+  </style>
+</head>
+<body>
+  <div id="screen">
+    <div id="main">
+      <a id="install" href="https://chrome.google.com/webstore/detail/nicocast/eenipglaffhnoinogndbmbdkmdlcedal/details"><img src="./logo.svg"/></a>
+    </div>
+  </div>
+  <span style="visibility:hidden">NicoCast ニコニコ動画をChromecastで再生できるようにする拡張機能</span>
+</body>
+</html>

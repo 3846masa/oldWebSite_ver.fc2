@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Incubator - 3846masa's Homepage</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="content-language" content="ja">
+  <script src="script/jquery.min.js"></script>
+  <script>
+    var mouseX;
+    var mouseY;
+    var canvas;
+    function setup(){
+      mouseX = $("body").width()/2; mouseY = $("body").height()/2;
+      canvas = $("#canvas")[0];
+      draw();
+      canvas.onmousemove = mouseMoveListner;
+      canvas.addEventListener("touchmove", touchHandler, false);
+      function mouseMoveListner(e) {
+        adjustXY(e);
+        draw();
+      }
+      function adjustXY(e) {
+        var rect = e.target.getBoundingClientRect();
+        mouseX = e.clientX - rect.left;
+        mouseY = e.clientY - rect.top;
+      }
+      function touchHandler(e){
+        e.preventDefault();
+        var touch = e.touches[0];
+        if(e.type == "touchmove"){
+          mouseX = touch.pageX;
+          mouseY = touch.pageY;
+        }
+        draw();
+      }
+    }
+    function draw(){
+      if ( canvas.getContext ){
+        //var width = $("body").width();
+        var width,height;
+        if ( $("body").width()/16 < $("body").height()/9 ){
+          width = $("body").width();
+          height = width*9/16;
+        }else{
+          height = $("body").height();
+          width = height*16/9;
+        }
+        //var height = $("body").height();
+        //var width = height*16/9;
+        var centerX = $("body").width()/2;
+        var centerY = $("body").height()/2;
+        $("#canvas").attr({width:$("body").width()});
+        $("#canvas").attr({height:$("body").height()});
+        var ctx = canvas.getContext('2d');
+        ctx.lineWidth = width/400+1;
+        {
+          ctx.fillStyle = "#DD4171";
+          ctx.strokeStyle = "#62533C"
+          ctx.beginPath();
+          ctx.arc(centerX-width*3/16,centerY-height/16,Math.min(width/8,height/8),0,Math.PI*2,false);
+          ctx.fill();
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(centerX+width*3/16,centerY-height/16,Math.min(width/8,height/8),0,Math.PI*2,false);
+          ctx.fill();
+          ctx.stroke();
+        }
+        {
+          var r = Math.min(width/14,height/14);
+          var dx = r/10*Math.min( (mouseX-centerX)/centerX ,1 );
+          var dy = r/10*Math.min( (mouseY-centerY)/centerY ,1 );
+          //console.log(dx+"::"+dy);
+          ctx.fillStyle = "#8B102D";
+          ctx.beginPath();
+          ctx.arc(centerX-width*3/16+dx,centerY-height/16+dy,r,0,Math.PI*2,false);
+          ctx.fill();
+          ctx.beginPath();
+          ctx.arc(centerX+width*3/16+dx,centerY-height/16+dy,r,0,Math.PI*2,false);
+          ctx.fill();
+        }
+        {
+          var r = Math.min(width/8,height/8);
+          ctx.fillStyle = "#FFFFFF";
+          ctx.beginPath();
+          ctx.arc(centerX-width*3/16+r*6/16,centerY-height/16-r*6/16,r/5,0,Math.PI*2,false);
+          ctx.fill();
+          ctx.beginPath();
+          ctx.arc(centerX+width*3/16+r*6/16,centerY-height/16-r*6/16,r/5,0,Math.PI*2,false);
+          ctx.fill();
+        }
+        {
+          var r = Math.min(width/20,height/20);
+          ctx.strokeStyle = "#62533C"
+          ctx.beginPath();
+          ctx.scale(1.3,0.7);
+          ctx.arc(centerX/1.3-r,(centerY+height/4)/0.7,r,0,Math.PI,false);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(centerX/1.3+r,(centerY+height/4)/0.7,r,0,Math.PI,false);
+          ctx.stroke();
+          ctx.scale(1.0/1.3,1.0/0.7);
+        }
+      }else{
+        console.log("error!");
+      }
+    }
+
+    var timer = false;
+    $(window).resize(function(){
+      if (timer !== false) { clearTimeout(timer); }
+      timer = setTimeout('draw();', 200);
+    });
+    $(window).ready(function(){
+      setup();
+    });
+  </script>
+  <style>
+    html,body,#canvas{
+      width:100%;
+      height:100%;
+      margin:0px;
+      position:absolute;
+      top:0px;
+      left:0px;
+    }
+    #fc2_footer{
+      position:fixed;
+      bottom:0px;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas">
+    
+  </canvas>
+</body>
+</html>
